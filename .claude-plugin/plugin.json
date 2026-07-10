@@ -1,0 +1,21 @@
+{
+  "name": "aioproductos",
+  "version": "1.0.0",
+  "description": "Connect your AIOProductOS workspace — the product operating system that joins customer feedback, revenue, work, and code on one customer record — and run evidence-backed weekly product triage from chat.",
+  "author": {
+    "name": "AIOProductOS",
+    "email": "office@aioproductos.com",
+    "url": "https://aioproductos.com"
+  },
+  "homepage": "https://aioproductos.com/mcp",
+  "repository": "https://github.com/AIOProductOS/claude-plugin",
+  "license": "MIT",
+  "keywords": [
+    "product-management",
+    "mcp",
+    "triage",
+    "prioritization",
+    "sprint-planning",
+    "voice-of-customer"
+  ]
+}

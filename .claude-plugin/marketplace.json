@@ -1,0 +1,20 @@
+{
+  "name": "aioproductos",
+  "owner": {
+    "name": "AIOProductOS",
+    "email": "office@aioproductos.com",
+    "url": "https://aioproductos.com"
+  },
+  "metadata": {
+    "description": "Official AIOProductOS plugins for Claude Code",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "aioproductos",
+      "source": "./",
+      "description": "AIOProductOS workspace connection (40 spine tools over MCP) + the aioproductos-triage skill and /aioproductos:triage command — Monday-morning product triage grounded in real revenue and usage.",
+      "category": "productivity"
+    }
+  ]
+}

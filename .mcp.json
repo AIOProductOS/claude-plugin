@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "aioproductos": {
+      "type": "http",
+      "url": "https://platform.aioproductos.com/api/mcp"
+    }
+  }
+}
