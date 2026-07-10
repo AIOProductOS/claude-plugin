@@ -4,7 +4,7 @@ Connect your [AIOProductOS](https://aioproductos.com) workspace to Claude Code a
 
 One install gives you:
 
-- **The workspace connection** — the AIOProductOS remote MCP server (40 tools over the product spine: insights, tasks, sprints, releases, customer 360, funnels, retention, NRR, experiments, weekly signal memo, and more). OAuth sign-in, no API keys.
+- **The workspace connection** — the AIOProductOS remote MCP server (38 tools over the product spine: insights, tasks, sprints, releases, customer 360, funnels, retention, NRR, experiments, weekly signal memo, and more). OAuth sign-in, no API keys.
 - **`/aioproductos:triage`** — Monday-morning product triage: surfaces the top 3 customer-evidenced insights, scores them transparently from real revenue and usage, and (after you confirm) creates the tasks, assigns a named AI teammate, and schedules them into the next sprint.
 - **The `aioproductos-triage` skill** — the full triage doctrine, available whenever you ask "what should we work on next?"
 
