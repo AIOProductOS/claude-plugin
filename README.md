@@ -1,5 +1,7 @@
 # AIOProductOS plugin for Claude Code
 
+[![Glama MCP server score](https://glama.ai/mcp/servers/AIOProductOS/claude-plugin/badges/score.svg)](https://glama.ai/mcp/servers/AIOProductOS/claude-plugin) [![Hosted connector on Glama](https://img.shields.io/badge/Glama-verified_connector-2ea87c)](https://glama.ai/mcp/connectors/com.aioproductos/mcp) [![MCP Registry](https://img.shields.io/badge/MCP_Registry-com.aioproductos%2Fmcp-4b5563)](https://registry.modelcontextprotocol.io/v0/servers?search=com.aioproductos)
+
 Connect your [AIOProductOS](https://aioproductos.com) workspace to Claude Code and work your whole product from chat — feedback, revenue, tasks, releases, analytics, and code activity joined on one customer record.
 
 One install gives you:
