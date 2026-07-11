@@ -1,0 +1,14 @@
+{
+  "name": "aioproductos-studio",
+  "version": "0.1.0",
+  "description": "AIOProductOS Studio — your AI teammate becomes a product videographer: scripted screen recordings of your own web app (gliding cursor, camera zooms, captions, branded transitions) and marketing-grade screenshots. Free, MIT, 100% local.",
+  "author": {
+    "name": "AIOProductOS",
+    "email": "office@aioproductos.com",
+    "url": "https://aioproductos.com"
+  },
+  "homepage": "https://github.com/AIOProductOS/studio-mcp",
+  "repository": "https://github.com/AIOProductOS/studio-mcp",
+  "license": "MIT",
+  "keywords": ["screen-recording", "product-demo", "demo-video", "screenshots", "marketing", "mcp"]
+}

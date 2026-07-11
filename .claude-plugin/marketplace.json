@@ -13,7 +13,13 @@
     {
       "name": "aioproductos",
       "source": "./",
-      "description": "AIOProductOS workspace connection (40 spine tools over MCP) + the aioproductos-triage skill and /aioproductos:triage command — Monday-morning product triage grounded in real revenue and usage.",
+      "description": "AIOProductOS workspace connection (39 spine tools over MCP) + the aioproductos-triage skill and /aioproductos:triage command — Monday-morning product triage grounded in real revenue and usage.",
+      "category": "productivity"
+    },
+    {
+      "name": "aioproductos-studio",
+      "source": "./studio",
+      "description": "AIOProductOS Studio — record product demo videos and marketing screenshots of your own web app from chat: gliding cursor, camera zooms, captions, branded transitions, MP4/GIF export. Free and fully local.",
       "category": "productivity"
     }
   ]

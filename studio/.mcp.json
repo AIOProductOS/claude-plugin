@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "studio": {
+      "command": "npx",
+      "args": ["-y", "@aioproductoscom/mcp-studio"]
+    }
+  }
+}
