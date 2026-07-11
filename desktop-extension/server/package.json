@@ -1,0 +1,13 @@
+{
+  "name": "aioproductos-mcpb-server",
+  "version": "0.15.2",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "productos": "index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.29.0",
+    "zod": "3.25.76"
+  }
+}
