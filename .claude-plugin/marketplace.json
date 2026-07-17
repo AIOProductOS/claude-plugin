@@ -13,7 +13,7 @@
     {
       "name": "aioproductos",
       "source": "./",
-      "description": "AIOProductOS workspace connection (65 spine tools over MCP — read and write across initiatives, features, OKRs, sprints, releases, experiments, decisions and an ideas backlog) + the aioproductos-triage skill and /aioproductos:triage command — Monday-morning product triage grounded in real revenue and usage.",
+      "description": "AIOProductOS workspace connection (71 spine tools over MCP — read and write across initiatives, features, OKRs, sprints, releases, experiments, decisions and an ideas backlog) + the aioproductos-triage skill and /aioproductos:triage command — Monday-morning product triage grounded in real revenue and usage.",
       "category": "productivity"
     },
     {
