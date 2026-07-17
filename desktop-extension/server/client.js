@@ -48,8 +48,59 @@ export class PlatformClient {
     createTask(body) {
         return this.req("/api/pm/tasks", { method: "POST", body: JSON.stringify(body) });
     }
+    createFeature(body) {
+        return this.req("/api/me/features", { method: "POST", body: JSON.stringify(body) });
+    }
+    createObjective(body) {
+        return this.req("/api/me/objectives", { method: "POST", body: JSON.stringify(body) });
+    }
+    createSprint(body) {
+        return this.req("/api/me/sprints", { method: "POST", body: JSON.stringify(body) });
+    }
+    createPage(body) {
+        return this.req("/api/me/pages", { method: "POST", body: JSON.stringify(body) });
+    }
+    updateFeature(body) {
+        return this.req("/api/me/features", { method: "PATCH", body: JSON.stringify(body) });
+    }
+    updateObjective(body) {
+        return this.req("/api/me/objectives", { method: "PATCH", body: JSON.stringify(body) });
+    }
+    updateKeyResult(body) {
+        return this.req("/api/me/key-results", { method: "PATCH", body: JSON.stringify(body) });
+    }
+    updateSprint(body) {
+        return this.req("/api/me/sprints", { method: "PATCH", body: JSON.stringify(body) });
+    }
+    updatePage(body) {
+        return this.req("/api/me/pages", { method: "PATCH", body: JSON.stringify(body) });
+    }
+    createRelease(body) {
+        return this.req("/api/me/releases", { method: "POST", body: JSON.stringify(body) });
+    }
+    updateRelease(body) {
+        return this.req("/api/me/releases", { method: "PATCH", body: JSON.stringify(body) });
+    }
+    createExperiment(body) {
+        return this.req("/api/me/experiments", { method: "POST", body: JSON.stringify(body) });
+    }
+    updateExperiment(body) {
+        return this.req("/api/me/experiments", { method: "PATCH", body: JSON.stringify(body) });
+    }
+    listDecisions(status) {
+        return this.req(`/api/me/decisions${status ? `?status=${encodeURIComponent(status)}` : ""}`);
+    }
+    createDecision(body) {
+        return this.req("/api/me/decisions", { method: "POST", body: JSON.stringify(body) });
+    }
+    updateDecision(body) {
+        return this.req("/api/me/decisions", { method: "PATCH", body: JSON.stringify(body) });
+    }
     updateTask(id, body) {
         return this.req(`/api/pm/tasks/${encodeURIComponent(id)}`, { method: "PATCH", body: JSON.stringify(body) });
+    }
+    deleteTask(id) {
+        return this.req(`/api/pm/tasks/${encodeURIComponent(id)}`, { method: "DELETE" });
     }
     comment(id, body) {
         return this.req(`/api/pm/tasks/${encodeURIComponent(id)}/comments`, {
@@ -153,5 +204,154 @@ export class PlatformClient {
             method: "POST",
             body: JSON.stringify({ action: "reply", channel_id: channelId, parent_id: parentId, body }),
         });
+    }
+    // ---- Strategy ladder: initiatives + ideas (goal → initiative → feature) ----
+    listInitiatives(productId) {
+        const qs = productId ? `?product_id=${encodeURIComponent(productId)}` : "";
+        return this.req(`/api/me/initiatives${qs}`);
+    }
+    createInitiative(body) {
+        return this.req("/api/me/initiatives", { method: "POST", body: JSON.stringify(body) });
+    }
+    updateInitiative(id, body) {
+        return this.req(`/api/me/initiatives/${encodeURIComponent(id)}`, { method: "PATCH", body: JSON.stringify(body) });
+    }
+    listIdeas(opts) {
+        const p = new URLSearchParams();
+        if (opts.status)
+            p.set("status", opts.status);
+        if (opts.productId)
+            p.set("product_id", opts.productId);
+        const qs = p.toString();
+        return this.req(`/api/me/ideas${qs ? `?${qs}` : ""}`);
+    }
+    createIdea(body) {
+        return this.req("/api/me/ideas", { method: "POST", body: JSON.stringify(body) });
+    }
+    updateIdea(id, body) {
+        return this.req(`/api/me/ideas/${encodeURIComponent(id)}`, { method: "PATCH", body: JSON.stringify(body) });
+    }
+    voteIdea(id, remove) {
+        return this.req(`/api/me/ideas/${encodeURIComponent(id)}/vote`, { method: remove ? "DELETE" : "POST" });
+    }
+    promoteIdea(id, body) {
+        return this.req(`/api/me/ideas/${encodeURIComponent(id)}/promote`, { method: "POST", body: JSON.stringify(body) });
+    }
+    // ---- Read parity with the hosted connector: catalogue + strategy + docs ----
+    listFeatures(opts) {
+        const p = new URLSearchParams();
+        if (opts.q)
+            p.set("q", opts.q);
+        if (opts.productId)
+            p.set("product_id", opts.productId);
+        const qs = p.toString();
+        return this.req(`/api/me/features${qs ? `?${qs}` : ""}`);
+    }
+    listObjectives(productId) {
+        const qs = productId ? `?product_id=${encodeURIComponent(productId)}` : "";
+        return this.req(`/api/me/objectives${qs}`);
+    }
+    listExperiments(opts) {
+        const p = new URLSearchParams();
+        if (opts.productId)
+            p.set("product_id", opts.productId);
+        if (opts.state)
+            p.set("state", opts.state);
+        const qs = p.toString();
+        return this.req(`/api/me/experiments${qs ? `?${qs}` : ""}`);
+    }
+    listReleases(productId) {
+        const qs = productId ? `?product_id=${encodeURIComponent(productId)}` : "";
+        return this.req(`/api/me/releases${qs}`);
+    }
+    listSprints(state) {
+        const qs = state ? `?state=${encodeURIComponent(state)}` : "";
+        return this.req(`/api/me/sprints${qs}`);
+    }
+    listPages(productId) {
+        const qs = productId ? `?product_id=${encodeURIComponent(productId)}` : "";
+        return this.req(`/api/me/pages${qs}`);
+    }
+    getPage(id) {
+        return this.req(`/api/me/pages?id=${encodeURIComponent(id)}`);
+    }
+    listInsights(opts) {
+        const p = new URLSearchParams();
+        if (opts.q)
+            p.set("q", opts.q);
+        if (opts.status)
+            p.set("status", opts.status);
+        if (opts.kind)
+            p.set("kind", opts.kind);
+        if (opts.featureId)
+            p.set("feature_id", opts.featureId);
+        if (opts.accountId)
+            p.set("account_id", opts.accountId);
+        if (opts.productId)
+            p.set("product_id", opts.productId);
+        if (opts.limit)
+            p.set("limit", String(opts.limit));
+        const qs = p.toString();
+        return this.req(`/api/me/insights${qs ? `?${qs}` : ""}`);
+    }
+    roadmapDrift(opts) {
+        const p = new URLSearchParams();
+        if (opts.window)
+            p.set("window", opts.window);
+        if (opts.productId)
+            p.set("product_id", opts.productId);
+        const qs = p.toString();
+        return this.req(`/api/me/roadmap-drift${qs ? `?${qs}` : ""}`);
+    }
+    weeklySignalMemo(opts) {
+        const p = new URLSearchParams();
+        if (opts.week)
+            p.set("week", opts.week);
+        if (opts.generate)
+            p.set("generate", "1");
+        const qs = p.toString();
+        return this.req(`/api/me/weekly-signal${qs ? `?${qs}` : ""}`);
+    }
+    codebaseMap(productId) {
+        const qs = productId ? `?product_id=${encodeURIComponent(productId)}` : "";
+        return this.req(`/api/me/codebase${qs}`);
+    }
+    listArtifactVersions(opts) {
+        const p = new URLSearchParams();
+        if (opts.targetId)
+            p.set("target_id", opts.targetId);
+        if (opts.targetType)
+            p.set("target_type", opts.targetType);
+        const qs = p.toString();
+        return this.req(`/api/me/artifact-versions${qs ? `?${qs}` : ""}`);
+    }
+    // ---- Identity graph: candidates, merge history, merge / unmerge ----
+    deviceCandidates() {
+        return this.req("/api/me/identity");
+    }
+    listIdentityMerges(limit) {
+        const p = new URLSearchParams({ view: "merges" });
+        if (limit)
+            p.set("limit", String(limit));
+        return this.req(`/api/me/identity?${p.toString()}`);
+    }
+    mergeEndUsers(body) {
+        return this.req("/api/me/identity", {
+            method: "POST",
+            body: JSON.stringify({ action: "merge_end_users", ...body }),
+        });
+    }
+    unmergeEndUsers(eventId) {
+        return this.req("/api/me/identity", {
+            method: "POST",
+            body: JSON.stringify({ action: "unmerge_end_users", event_id: eventId }),
+        });
+    }
+    // ---- AI artifacts: critic review + version revert ----
+    reviewArtifact(body) {
+        return this.req("/api/me/review-artifact", { method: "POST", body: JSON.stringify(body) });
+    }
+    revertToVersion(body) {
+        return this.req("/api/me/revert-version", { method: "POST", body: JSON.stringify(body) });
     }
 }
