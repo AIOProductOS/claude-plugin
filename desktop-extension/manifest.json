@@ -2,9 +2,9 @@
   "manifest_version": "0.2",
   "name": "aioproductos",
   "display_name": "AIOProductOS",
-  "version": "0.15.2",
+  "version": "0.15.9",
   "description": "Run your AIOProductOS product board, product brain, first-party analytics, and support inbox from Claude Desktop — over one typed customer record that joins revenue, feedback, work, and code.",
-  "long_description": "AIOProductOS is a product operating system: one shared record per customer that joins revenue, customer feedback, product analytics, work, and code. This desktop extension connects Claude Desktop to your workspace over MCP with 28 tools — read and move board tasks, read your product brain, capture feedback as insights, compute revenue-weighted NPS/NRR/funnels/retention, and work the support inbox and comms channels. Authentication is a single personal access token generated in AIOProductOS → Settings → Tokens & Agents; the token is scoped to your org and every call respects your row-level permissions. The extension stores nothing locally — each tool call is one authenticated HTTPS request to the platform. For a fully remote, OAuth 2.1 connection with the complete 65-tool surface, add the hosted connector at https://platform.aioproductos.com/api/mcp instead.",
+  "long_description": "AIOProductOS is a product operating system: one shared record per customer that joins revenue, customer feedback, product analytics, work, and code. This desktop extension connects Claude Desktop to your workspace over MCP with 71 tools — read AND write across the product spine: the board (create/move/delete tasks), the strategy-to-delivery ladder (ideas & votes, initiatives, features, OKRs, sprints, releases, pages, experiments, decisions), capture feedback as insights, compute revenue-weighted NPS/NRR/funnels/retention, review and revert AI artifacts, work the support inbox, comms channels and the identity graph. Authentication is a single personal access token generated in AIOProductOS → Settings → Tokens & Agents; the token is scoped to your org and every call respects your row-level permissions. The extension stores nothing locally — each tool call is one authenticated HTTPS request to the platform. Prefer a fully remote, OAuth 2.1 connection with no token to manage? Add the 65-tool hosted connector at https://platform.aioproductos.com/api/mcp instead.",
   "author": {
     "name": "AIOProductOS Inc.",
     "email": "office@aioproductos.com",
@@ -33,41 +33,229 @@
     "entry_point": "server/index.js",
     "mcp_config": {
       "command": "node",
-      "args": ["${__dirname}/server/index.js"],
+      "args": [
+        "${__dirname}/server/index.js"
+      ],
       "env": {
-        "PRODUCTOS_TOKEN": "${user_config.token}"
+        "PRODUCTOS_TOKEN": "${user_config.token}",
+        "NO_UPDATE_NOTIFIER": "1"
       }
     }
   },
   "tools": [
-    { "name": "whoami" },
-    { "name": "pm_meta" },
-    { "name": "get_pm_playbook" },
-    { "name": "list_tasks" },
-    { "name": "get_task" },
-    { "name": "create_task" },
-    { "name": "update_task" },
-    { "name": "comment_on_task" },
-    { "name": "add_note" },
-    { "name": "get_product_brain" },
-    { "name": "capture_insight" },
-    { "name": "get_customer_360" },
-    { "name": "analyze_nps" },
-    { "name": "analyze_nrr" },
-    { "name": "analyze_funnel" },
-    { "name": "get_retention" },
-    { "name": "analyze_paths" },
-    { "name": "list_conversations" },
-    { "name": "get_conversation" },
-    { "name": "reply_to_conversation" },
-    { "name": "resolve_conversation" },
-    { "name": "list_bookings" },
-    { "name": "cancel_booking" },
-    { "name": "reschedule_booking" },
-    { "name": "list_channels" },
-    { "name": "read_channel" },
-    { "name": "post_to_channel" },
-    { "name": "reply_in_channel" }
+    {
+      "name": "whoami"
+    },
+    {
+      "name": "get_pm_playbook"
+    },
+    {
+      "name": "pm_meta"
+    },
+    {
+      "name": "list_tasks"
+    },
+    {
+      "name": "get_task"
+    },
+    {
+      "name": "create_task"
+    },
+    {
+      "name": "create_feature"
+    },
+    {
+      "name": "create_objective"
+    },
+    {
+      "name": "create_sprint"
+    },
+    {
+      "name": "create_page"
+    },
+    {
+      "name": "update_feature"
+    },
+    {
+      "name": "update_objective"
+    },
+    {
+      "name": "update_key_result"
+    },
+    {
+      "name": "list_initiatives"
+    },
+    {
+      "name": "create_initiative"
+    },
+    {
+      "name": "update_initiative"
+    },
+    {
+      "name": "list_ideas"
+    },
+    {
+      "name": "create_idea"
+    },
+    {
+      "name": "update_idea"
+    },
+    {
+      "name": "vote_idea"
+    },
+    {
+      "name": "promote_idea"
+    },
+    {
+      "name": "update_sprint"
+    },
+    {
+      "name": "update_page"
+    },
+    {
+      "name": "create_release"
+    },
+    {
+      "name": "update_release"
+    },
+    {
+      "name": "create_experiment"
+    },
+    {
+      "name": "update_experiment"
+    },
+    {
+      "name": "list_decisions"
+    },
+    {
+      "name": "create_decision"
+    },
+    {
+      "name": "update_decision"
+    },
+    {
+      "name": "update_task"
+    },
+    {
+      "name": "delete_task"
+    },
+    {
+      "name": "comment_on_task"
+    },
+    {
+      "name": "get_product_brain"
+    },
+    {
+      "name": "get_customer_360"
+    },
+    {
+      "name": "analyze_nps"
+    },
+    {
+      "name": "analyze_nrr"
+    },
+    {
+      "name": "capture_insight"
+    },
+    {
+      "name": "analyze_funnel"
+    },
+    {
+      "name": "get_retention"
+    },
+    {
+      "name": "analyze_paths"
+    },
+    {
+      "name": "list_conversations"
+    },
+    {
+      "name": "get_conversation"
+    },
+    {
+      "name": "reply_to_conversation"
+    },
+    {
+      "name": "add_note"
+    },
+    {
+      "name": "resolve_conversation"
+    },
+    {
+      "name": "list_bookings"
+    },
+    {
+      "name": "cancel_booking"
+    },
+    {
+      "name": "reschedule_booking"
+    },
+    {
+      "name": "list_channels"
+    },
+    {
+      "name": "read_channel"
+    },
+    {
+      "name": "post_to_channel"
+    },
+    {
+      "name": "reply_in_channel"
+    },
+    {
+      "name": "list_features"
+    },
+    {
+      "name": "list_objectives"
+    },
+    {
+      "name": "list_experiments"
+    },
+    {
+      "name": "list_releases"
+    },
+    {
+      "name": "list_sprints"
+    },
+    {
+      "name": "list_pages"
+    },
+    {
+      "name": "get_page"
+    },
+    {
+      "name": "list_insights"
+    },
+    {
+      "name": "get_roadmap_drift"
+    },
+    {
+      "name": "get_weekly_signal_memo"
+    },
+    {
+      "name": "get_codebase_map"
+    },
+    {
+      "name": "list_artifact_versions"
+    },
+    {
+      "name": "get_device_candidates"
+    },
+    {
+      "name": "list_identity_merges"
+    },
+    {
+      "name": "merge_end_users"
+    },
+    {
+      "name": "unmerge_end_users"
+    },
+    {
+      "name": "review_artifact"
+    },
+    {
+      "name": "revert_to_version"
+    }
   ],
   "user_config": {
     "token": {
