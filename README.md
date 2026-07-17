@@ -8,19 +8,20 @@ Connect your [AIOProductOS](https://aioproductos.com) workspace to Claude Code a
 
 One install gives you:
 
-- **The workspace connection** — the AIOProductOS remote MCP server: **57 tools over the product spine**, and it doesn't just read. It's a fully autonomous PM surface — read the spine _and_ write to it: create and update features, objectives & key results, sprints, releases, pages, experiments, decisions, and tasks; delete tasks; post to team channels; capture insights; merge/unmerge people; revert AI-artifact versions. OAuth sign-in, no API keys.
+- **The workspace connection** — the AIOProductOS remote MCP server: **65 tools over the product spine**, and it doesn't just read. It's a fully autonomous PM surface — read the spine _and_ write to it: create and update initiatives, features, objectives & key results, sprints, releases, pages, experiments, decisions, ideas, and tasks; vote on and promote ideas; delete tasks; post to team channels; capture insights; merge/unmerge people; revert AI-artifact versions. OAuth sign-in, no API keys.
 - **`/aioproductos:triage`** — Monday-morning product triage: surfaces the top 3 customer-evidenced insights, scores them transparently from real revenue and usage, and (after you confirm) creates the tasks, assigns a named AI teammate, and schedules them into the next sprint.
 - **The `aioproductos-triage` skill** — the full triage doctrine, available whenever you ask "what should we work on next?"
 
 ## What you can do
 
-**Read the spine** — customer 360, product brain, weekly signal memo, roadmap drift; analytics: NPS, NRR, funnels, retention, path analysis; list tasks, features, objectives, sprints, releases, pages, experiments, insights, conversations, channels, bookings, identity merges, codebase map.
+**Read the spine** — customer 360, product brain, weekly signal memo, roadmap drift; analytics: NPS, NRR, funnels, retention, path analysis; list tasks, features, objectives, initiatives, ideas, sprints, releases, pages, experiments, insights, conversations, channels, bookings, identity merges, codebase map.
 
 **Write to the spine** — no jumping back to the web UI:
 
 - **Delivery** — create/update tasks, comment, delete tasks, create/update sprints
 - **Roadmap** — create/update features, releases, pages
-- **Strategy** — create/update objectives and key results, decisions, experiments
+- **Strategy** — create/update objectives and key results, initiatives, decisions, experiments
+- **Ideas** — create/update ideas, vote, promote an idea to a feature
 - **Customers & comms** — capture insights, post to channels, merge/unmerge end users
 - **AI artifacts** — review artifacts, revert to a prior version
 
