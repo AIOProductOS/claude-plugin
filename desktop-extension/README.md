@@ -10,7 +10,7 @@ record that joins revenue, feedback, work, and code.
 - **Auth:** a single Personal Access Token, generated in AIOProductOS → **Settings → Tokens & Agents**. Scoped to your org; every call respects your row-level permissions.
 - **Stores nothing locally** — each tool call is one authenticated HTTPS request to the platform.
 
-> Prefer a fully remote, OAuth 2.1 connection with the complete **39-tool** surface?
+> Prefer a fully remote, OAuth 2.1 connection with the complete **57-tool** surface?
 > Add the hosted connector instead: `https://platform.aioproductos.com/api/mcp`
 > (docs: <https://aioproductos.com/product/mcp>).
 
