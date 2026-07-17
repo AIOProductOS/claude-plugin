@@ -6,11 +6,11 @@ Context Protocol — run the product board, read your product brain, compute fir
 analytics, capture feedback, and work the support inbox, all over one typed customer
 record that joins revenue, feedback, work, and code.
 
-- **28 tools** (product board · product brain · insights · NPS/NRR/funnel/retention/paths · support inbox · comms)
+- **71 tools** (product board · product brain · insights · NPS/NRR/funnel/retention/paths · support inbox · comms)
 - **Auth:** a single Personal Access Token, generated in AIOProductOS → **Settings → Tokens & Agents**. Scoped to your org; every call respects your row-level permissions.
 - **Stores nothing locally** — each tool call is one authenticated HTTPS request to the platform.
 
-> Prefer a fully remote, OAuth 2.1 connection with the complete **65-tool** surface?
+> Prefer a fully remote, OAuth 2.1 connection with the 65-tool hosted surface?
 > Add the hosted connector instead: `https://platform.aioproductos.com/api/mcp`
 > (docs: <https://aioproductos.com/product/mcp>).
 
