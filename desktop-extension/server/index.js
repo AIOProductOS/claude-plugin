@@ -5,7 +5,7 @@ import { z } from "zod";
 import { PlatformClient } from "./client.js";
 import { PM_PLAYBOOK, PM_SKILL_VERSION } from "./pm-skill.js";
 import { checkForUpdate, updateBanner } from "./update-notifier.js";
-const VERSION = "0.15.9";
+const VERSION = "0.15.10";
 const token = process.env.PRODUCTOS_TOKEN;
 const baseUrl = (process.env.PRODUCTOS_URL ?? "https://platform.aioproductos.com").replace(/\/$/, "");
 if (!token) {
