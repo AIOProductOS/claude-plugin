@@ -7,6 +7,7 @@ analytics, capture feedback, and work the support inbox, all over one typed cust
 record that joins revenue, feedback, work, and code.
 
 - **71 tools** (product board · product brain · insights · NPS/NRR/funnel/retention/paths · support inbox · comms)
+- **3 interactive apps** ([MCP Apps](https://modelcontextprotocol.io/extensions/apps/overview)) — `list_tasks` renders your board (change a status and it writes back through `update_task`), `get_weekly_signal_memo` renders this week's themes (one click turns a theme into a linked task), and `analyze_funnel` renders conversion per step with the live MRR behind each. The text answer is always there too, so nothing is lost if a host doesn't render them.
 - **Auth:** a single Personal Access Token, generated in AIOProductOS → **Settings → Tokens & Agents**. Scoped to your org; every call respects your row-level permissions.
 - **Stores nothing locally** — each tool call is one authenticated HTTPS request to the platform.
 

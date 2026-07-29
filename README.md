@@ -27,6 +27,22 @@ One install gives you:
 
 Everything is scoped to your organization and your role's permissions, and writes go through the same guardrails as the app.
 
+## Interactive apps
+
+Three tools render a working interface in the conversation rather than a wall of JSON
+([MCP Apps](https://modelcontextprotocol.io/extensions/apps/overview), SEP-1865). They aren't
+screenshots — each one calls back into this same MCP:
+
+| Ask for | You get | What it writes |
+|---|---|---|
+| `list_tasks` | **Board** — your tasks grouped by status, ranked by priority | change a status → `update_task` |
+| `get_weekly_signal_memo` | **Weekly signal** — this week's themes with the evidence behind each | a theme → `create_task`, linked to its feature |
+| `analyze_funnel` | **Funnel** — conversion per step with the live MRR behind each one | read-only |
+
+Hosts that support MCP Apps (Claude, ChatGPT, VS Code, Goose and others) render them inline.
+Everywhere else the tools return exactly the text they always did — the app is an enhancement,
+never the only copy of the answer.
+
 ## Install
 
 ```

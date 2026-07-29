@@ -1,6 +1,6 @@
 {
   "name": "aioproductos-mcpb-server",
-  "version": "0.15.10",
+  "version": "0.17.0",
   "private": true,
   "type": "module",
   "bin": {

@@ -9,8 +9,8 @@
  * and it's disabled under CI.
  */
 import { readFileSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
 import { tmpdir } from "node:os";
+import { join } from "node:path";
 const PKG = "@aioproductoscom/mcp";
 const CACHE = join(tmpdir(), "aioproductos-mcp-update.json");
 const TTL_MS = 24 * 60 * 60 * 1000; // check npm at most once a day
