@@ -6,7 +6,9 @@ Context Protocol — run the product board, read your product brain, compute fir
 analytics, capture feedback, and work the support inbox, all over one typed customer
 record that joins revenue, feedback, work, and code.
 
-- **71 tools** (product board · product brain · insights · NPS/NRR/funnel/retention/paths · support inbox · comms)
+- **71 tools** — 34 read, 37 write, 1 destructive (product board · product brain · insights · NPS/NRR/funnel/retention/paths · support inbox · comms · bookings)
+- **Writes a third party can see:** `reply_to_conversation` / `add_note` / `resolve_conversation` (your support visitor sees the reply), `post_to_channel` / `reply_in_channel` (teammates), and `cancel_booking` / `reschedule_booking` (the guest is notified).
+- **`delete_task` is the one destructive tool** — permanent, cascades to subtasks, no undo. It requires `confirm: "DELETE"` alongside the id, so a bare task id can never trigger it.
 - **3 interactive apps** ([MCP Apps](https://modelcontextprotocol.io/extensions/apps/overview)) — `list_tasks` renders your board (change a status and it writes back through `update_task`), `get_weekly_signal_memo` renders this week's themes (one click turns a theme into a linked task), and `analyze_funnel` renders conversion per step with the live MRR behind each. The text answer is always there too, so nothing is lost if a host doesn't render them.
 - **Auth:** a single Personal Access Token, generated in AIOProductOS → **Settings → Tokens & Agents**. Scoped to your org; every call respects your row-level permissions.
 - **Stores nothing locally** — each tool call is one authenticated HTTPS request to the platform.

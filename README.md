@@ -21,11 +21,23 @@ One install gives you:
 - **Discovery** — capture ideas, vote on them, promote an idea into a feature
 - **Strategy** — create/update initiatives, objectives and key results, decisions, experiments
 - **Roadmap** — create/update features, releases, pages
-- **Delivery** — create/update tasks, comment, delete tasks, create/update sprints
+- **Delivery** — create/update tasks, comment, create/update sprints
 - **Customers & comms** — capture insights, post to channels, merge/unmerge end users
 - **AI artifacts** — review artifacts, revert to a prior version
 
 Everything is scoped to your organization and your role's permissions, and writes go through the same guardrails as the app.
+
+**Writes someone else can see.** Three groups reach beyond your own workspace, so
+they're worth knowing about before you connect: `reply_to_conversation`,
+`add_note` and `resolve_conversation` act on your support inbox and a visitor
+sees the reply; `post_to_channel` and `reply_in_channel` post to team channels as
+you; `cancel_booking` and `reschedule_booking` change a booked meeting and notify
+the guest.
+
+**One destructive tool.** `delete_task` is permanent, cascades to subtasks, and
+has no undo — so it requires `confirm: "DELETE"` alongside the task id. A task id
+alone can never trigger it; the assistant has to ask you first. Nothing else
+deletes anything.
 
 ## Interactive apps
 

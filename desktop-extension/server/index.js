@@ -8,7 +8,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { PlatformClient } from "./client.js";
 import { createPmServer } from "./server.js";
 import { checkForUpdate, updateBanner } from "./update-notifier.js";
-const VERSION = "0.17.0";
+const VERSION = "0.18.0";
 const token = process.env.PRODUCTOS_TOKEN;
 const baseUrl = (process.env.PRODUCTOS_URL ?? "https://platform.aioproductos.com").replace(/\/$/, "");
 if (!token) {

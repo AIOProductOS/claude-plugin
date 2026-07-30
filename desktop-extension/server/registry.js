@@ -3,15 +3,33 @@
 // business-logic duplication — the MCP route forwards the caller's bearer token to
 // the same endpoint the stdio MCP already uses. Adding a tool = one entry here.
 //
-// SAFETY: this surface is read-heavy by design. It exposes the FULL product
-// read surface — board, insights backlog, features, OKRs, experiments, releases,
-// sprints, Pages, the codebase map, support inbox, team channels, bookings, plus
-// the revenue-weighted analytics — and a SAFE write set (tasks + capture_insight).
-// Customer-facing / multiplayer writes (replying to a support visitor, cancelling
-// or rescheduling a guest's booking, posting to a Comms channel) are deliberately
-// omitted: they can be triggered by anyone tagging the agent, so they need tighter
-// guardrails before they ship here. Their token-authed endpoints exist
-// (/api/me/comms POST, /api/me/scheduling POST) — wiring them is an opt-in.
+// SCOPE — keep this paragraph TRUE. It is the source the Directory listing's
+// permissions summary is written from, and a stale version of it (claiming a
+// "safe write set" of tasks + insights, and that nothing is ever deleted) got
+// our Directory submission rejected on 2026-07-30. The write surface HAD grown:
+// the customer-facing and booking verbs listed below shipped in 2d30a8d4 and
+// this comment was never updated. If you add a write, update this AND the
+// listing in the same pass.
+//
+// 34 reads / 37 writes across the spine. The reads cover board, insights
+// backlog, features, OKRs, initiatives, ideas, experiments, releases, sprints,
+// Pages, decisions, codebase map, support inbox, team channels, bookings, the
+// identity graph, and the revenue-weighted analytics.
+//
+// The writes are NOT limited to the board. They include:
+//   • board + spine records — create/update tasks, features, objectives, key
+//     results, initiatives, ideas (+vote/promote), sprints, releases, pages,
+//     experiments, decisions; comment on tasks; capture insights
+//   • CUSTOMER-FACING and TEAM MESSAGING — reply_to_conversation and add_note
+//     and resolve_conversation (a support visitor sees these), post_to_channel
+//     and reply_in_channel (teammates see these)
+//   • GUEST-VISIBLE BOOKING CHANGES — cancel_booking, reschedule_booking
+//   • IDENTITY — merge_end_users / unmerge_end_users (reversible 30 days)
+//   • ARTIFACTS — review_artifact, revert_to_version
+//   • ONE DESTRUCTIVE, IRREVERSIBLE tool — delete_task, which cascades to
+//     subtasks. It is annotated destructiveHint:true and additionally gated
+//     behind a required confirm="DELETE" argument (see its `guard`), so a bare
+//     task id can never trigger it.
 import { APP_HTML } from "./generated/apps.js";
 /** MUST be this exact type or hosts won't treat the resource as an app (SEP-1865). */
 export const APP_MIME_TYPE = "text/html;profile=mcp-app";
@@ -706,7 +724,17 @@ export const MCP_TOOLS = [
         kind: "rest",
         annotations: WRITE_DELETE,
         description: "PERMANENTLY delete a task and return the deleted id. Irreversible — there is no undo. Cascades: the task's comments, assignees, tags, attachments, time entries, outcomes, events, relations, and its SUBTASKS are deleted with it; experiment/insight/meeting links to it are cleared. Resolve the id via list_tasks and confirm intent first — prefer update_task (e.g. move it to a done/archived status) when you only want it off the active board.",
-        inputSchema: obj({ id: s("Task id to permanently delete, from list_tasks (required).") }, ["id"]),
+        inputSchema: obj({
+            id: s("Task id to permanently delete, from list_tasks (required)."),
+            confirm: {
+                type: "string",
+                enum: ["DELETE"],
+                description: 'Safety gate — must be exactly "DELETE". Required so a bare task id can never trigger a permanent, cascading delete. Confirm with the human FIRST, in plain language naming the task, then pass it.',
+            },
+        }, ["id", "confirm"]),
+        guard: (a) => a.confirm === "DELETE"
+            ? null
+            : 'Refused: delete_task is permanent and cascades to subtasks, so it requires confirm="DELETE". Tell the human exactly which task will be destroyed, get their agreement, then call again with confirm="DELETE". If you only want it off the active board, use update_task to move it to a done or archived status instead.',
         rest: (a) => ({ method: "DELETE", path: `/api/pm/tasks/${encodeURIComponent(String(a.id))}` }),
     },
     {

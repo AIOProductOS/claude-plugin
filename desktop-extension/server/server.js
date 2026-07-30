@@ -134,6 +134,12 @@ export function createPmServer(deps) {
         if (!tool) {
             return { content: decorate([{ type: "text", text: `Unknown tool: ${name}` }]), isError: true };
         }
+        // A tool may refuse before anything leaves the process (delete_task without
+        // its confirmation). Refusing here means the platform is never called.
+        const refusal = tool.guard?.(args);
+        if (refusal) {
+            return { content: decorate([{ type: "text", text: refusal }]), isError: true };
+        }
         if (tool.kind === "static") {
             return { content: decorate([{ type: "text", text: tool.run(args) }]) };
         }
